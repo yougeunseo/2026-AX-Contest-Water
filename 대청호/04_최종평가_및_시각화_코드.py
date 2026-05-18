@@ -5,6 +5,13 @@ import numpy as np
 import joblib
 import matplotlib.pyplot as plt
 
+# ==========================================
+# [경로 에러 해결] 파이썬 파일이 있는 곳을 강제로 기준 폴더로 설정
+# ==========================================
+current_dir = os.path.dirname(os.path.abspath(__file__))
+os.chdir(current_dir)
+
+
 # 폰트 설정 (윈도우 맑은 고딕)
 plt.rcParams['font.family'] = 'Malgun Gothic'
 plt.rcParams['axes.unicode_minus'] = False

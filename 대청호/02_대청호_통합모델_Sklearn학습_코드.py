@@ -11,6 +11,12 @@ import joblib
 import matplotlib.pyplot as plt
 import warnings
 
+# ==========================================
+# [경로 에러 해결] 파이썬 파일이 있는 곳을 강제로 기준 폴더로 설정
+# ==========================================
+current_dir = os.path.dirname(os.path.abspath(__file__))
+os.chdir(current_dir)
+
 # 불필요한 경고창 숨기기
 warnings.filterwarnings('ignore')
 
@@ -19,7 +25,7 @@ plt.rcParams['font.family'] = 'Malgun Gothic'
 plt.rcParams['axes.unicode_minus'] = False
 
 # =====================
-# 1. 환경 설정 및 데이터 로드 (우리가 합친 순수데이터 기준)
+# 1. 환경 설정 및 데이터 로드 (순수데이터 기준)
 # =====================
 file_path = "대청호_통합_순수데이터.csv" # 파일 경로 수정
 base_save_dir = "Model_Integrated_Result" # 결과 저장할 메인 폴더
@@ -80,7 +86,7 @@ for station in stations:
     columns_X = [col for col in desired_columns if col in df.columns]
         
     # =====================
-    # 3. 7일 선행 시간 매칭 (동기 로직 100% 유지!)
+    # 3. 7일 선행 시간 매칭
     # =====================
     df_clean = df.dropna(subset=columns_X + ['조사일']).copy()
 
@@ -205,7 +211,7 @@ for station in stations:
         print(f"  [+] R2: {r2:.4f} (MAE: {mae:.0f}) | HL:{hl}, IS:{isize}, EP:{ep}")
 
     # =====================
-    # 6. 폴더별 저장 및 시각화(산점도) 그리기 (동기 로직 유지)
+    # 6. 폴더별 저장 및 시각화(산점도) 그리기
     # =====================
     if best_plot_data is None:
         continue

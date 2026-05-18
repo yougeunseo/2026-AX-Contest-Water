@@ -4,6 +4,12 @@ import pandas as pd
 import numpy as np
 import joblib
 
+# ==========================================
+# [경로 에러 해결] 파이썬 파일이 있는 곳을 강제로 기준 폴더로 설정
+# ==========================================
+current_dir = os.path.dirname(os.path.abspath(__file__))
+os.chdir(current_dir)
+
 print("🚀 대청호 통합 순수데이터 기반 3개 수역 개별 파일 AI 예측을 시작합니다...\n")
 
 # =====================
